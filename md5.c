@@ -136,4 +136,5 @@ int calculate_md5(md5_hash *_md5, unsigned char *text, uint64_t length){
    		_md5->digest[3] += d;	//D
     }
     free(buffer);
+    return 1;
 }
