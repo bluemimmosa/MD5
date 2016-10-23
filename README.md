@@ -11,3 +11,7 @@ function returns md5_hash in the structure tag called md5_hash having following 
 
 *text is a array to content of file or text.
 length is the file size in bytes or text length.
+
+the err contains error;
+	-1 if memeory allocation problems.
+	0 on succesfull hash caluclation.
