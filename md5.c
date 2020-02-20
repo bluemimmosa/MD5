@@ -3,13 +3,13 @@
 
 #define DEBUG
 
-#define ROTL(bits,word) (((word) << (bits)) | ((word) >> (32-(bits))))
+#define ROTL(bits,word) (((word) << (bits)) | ((word) >> (32-(bits)))) // rotate left macro.
 //typedef unsigned int uint32_t;
 void debug_print(char *, uint32_t);
 uint32_t padded_length_in_bits(uint32_t len);
 
 typedef struct md5{
-	uint32_t digest[4];
+	uint32_t digest[4]; //will include the md5 hash in this array.
 	uint32_t k[64];
 	int err;
 } md5_hash;
@@ -69,10 +69,10 @@ int calculate_md5(md5_hash *_md5, unsigned char *text, uint64_t length){
 	memcpy(buffer, text, length);
 
 	//add 1 on last of the message..
-	*(buffer+length) = 0x80);
+	*(buffer+length) = 0x80); //in binary 1000 0000b
 	//fill remaining by 0x00;
 	for(i=length+1; i<(no_of_bits/8); i++){
-	*(buffer+i) = 0x00;
+	*(buffer+i) = 0x00; //padding.
 	}
 
 	memcpy(buffer+(no_of_bits/8), &lb,8);
@@ -95,7 +95,7 @@ int calculate_md5(md5_hash *_md5, unsigned char *text, uint64_t length){
     _md5->digest[3] = 0x10325476;	//D
 
     for(i=0; i<((no_of_bits+64)/512); i++){
-    	for(j=0;j<64;j++){	//emptying the buffer k[] so that can start fresh
+    	for(j=0;j<64;j++){	//emptying the buffer k[] so that it can start fresh
     		_md5->k[j] = 0x00;
     	}
     	//breaking the 512 bit block into 32 bit block 
